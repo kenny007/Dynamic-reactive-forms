@@ -5,7 +5,9 @@ import { FormGroup, FormControl } from '@angular/forms';
   selector: 'app-dynamic-form',
   template: `
     <form [formGroup]="form">
-      <input type="text" [formControlName]="fieldName">
+    <div *ngFor="let prop of personProps">
+        <input type="text" [formControlName]="prop">
+    </div>
     </form>
     <pre>{{ form.value | json }}</pre>
   `,
@@ -13,12 +15,21 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class ReativeFormComponent implements OnInit {
   form: FormGroup;
-  fieldName = 'age';
-  fieldValue = '32';
+  person = {
+    firstname: 'Kehinde',
+    age: 32,
+    surname: 'Adebayo',
+    twitter:'@kennymore007'
+  };
+  personProps = [];
 
   ngOnInit() {
-    this.form = new FormGroup({
-      [this.fieldName]: new FormControl(this.fieldValue)
-    });
+    const formDataObj = {};
+    for(const prop of Object.keys(this.person)) {
+      formDataObj[prop] = new FormControl(this.person[prop]);
+      //this.personProps.push(prop);
+    }
+
+    this.form = new FormGroup(formDataObj);
   }
 }
