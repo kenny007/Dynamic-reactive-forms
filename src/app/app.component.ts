@@ -1,3 +1,4 @@
+import { Validators } from '@angular/forms';
 import { Component } from '@angular/core';
 
 @Component({
@@ -13,12 +14,27 @@ export class AppComponent {
     firstname: {
        label:'Firstname',
        value:'Kehinde',
-       type: 'text'
+       type: 'text',
+       validators: {
+         required: true
+       }
     },
     age: {
       label: 'Age',
       value: 32,
-      type: 'number'
+      type: 'number',
+      validators: {
+        min: 18
+      }
+    },
+    gender: {
+      label: 'Gender',
+      value: 'F',
+      type: 'radio',
+      options: [
+        { label:'Male', value: 'M'},
+        { label:'Female', value: 'F'}
+      ]
     },
     city: {
       label: 'City',
