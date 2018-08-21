@@ -19,6 +19,17 @@ export class AppComponent {
       label: 'Age',
       value: 32,
       type: 'number'
+    },
+    city: {
+      label: 'City',
+      value: 'NY',
+      type: 'select',
+      options:[
+        { label:'(choose one)', value: ''},
+        { label:'New York', value: 'NY'},
+        { label:'Los Angeles', value: 'LA'},
+        { label:'Salt Lake City', value: 'SLC'},
+      ]
     }
   };
 }
